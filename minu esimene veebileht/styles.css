@@ -1,0 +1,16 @@
+body{
+    background-image: url("Images/Shak1.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: antiquewhite;
+    font-family: "consolas", sans-serif;
+    text-align: center;
+}
+h1{
+    font-size: 72px;
+    margin-top: 200px;
+}
+p{
+
+}
