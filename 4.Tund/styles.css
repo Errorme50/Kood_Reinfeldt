@@ -1,5 +1,5 @@
 body {
-    background-color: #f0f0f0;
+    background-color: #1ee7bf;
 }
 
 .container {
@@ -18,13 +18,13 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background-color: #007dd0;
+    background-color: #3498db;
     color: #fff;
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
 }
 
 .box:nth-child(odd) {
-    background-color: #cb1400;
+    background-color: #e74c3c;
     font-family: 'Monotype Corsiva', cursive;
 } 
