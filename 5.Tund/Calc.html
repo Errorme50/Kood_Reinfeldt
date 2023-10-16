@@ -17,8 +17,29 @@
             return a * b;
         }
         function jagamine(a , b){
-            return a / b;
+            if(b != 0){
+                return a / b;
+            }
+            else{
+                return error
+            }
         }
+        let a = parseFloat(("Esimene number: "));
+        let b = parseFloat(("Teine number: "));
+        let tehe = prompt("Mis tehe? ( + , - , * , /)");
+        let vastus = null;
+        if(tehe = "+"){
+            vastus = liitmine(a , b);
+        }else if(tehe = "-"){
+            vastus = lahutamine(a , b);
+        }else if(tehe = "*"){
+            vastus = korrutamine(a , b);
+        }else if(tehe = "/"){
+            vastus = jagamine(a , b);
+        }else if(vastus = null){
+            alert("Vale tehe");
+        }
+        alert("Tulemus: " + tulemus)
        </script>
    </body>
 </html>
