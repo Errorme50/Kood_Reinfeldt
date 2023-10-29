@@ -9,10 +9,18 @@
        <script>
         let Oigenum = Math.floor(Math.random() * 100) + 1;
         let num1 = parseInt(prompt("Vali yks number 1-100: "));
-        while(num1 != int){
+            if(isNaN(num1)){
             alert("Ei ole number");
             num1 = parseInt(prompt("Vali yks number 1-100: "));
-        }
+            }
+            if (num1 > Oigenum){
+            alert("Su pakkumine on liiga suur");
+            } else if(num1 < Oigenum){
+            alert("Su pakkumine on liiga väike");
+            } else {
+            alert("Su pakkumine on õige");
+            }
+        
        </script>
    </body>
 </html>
