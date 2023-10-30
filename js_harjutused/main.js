@@ -121,3 +121,52 @@ function harjutus14(inimesed) {
         console.log("E-post sisaldab sõna 'eesti': " + eestiEmail.nimi);
     }
 }
+function suurim(array){
+    let n = array.length
+    let suurim = array[0];
+    for(let i = 1; i < n; i++){
+        if(array[i] > suurim){
+            suurim = array[i];
+        }
+    }
+    return(suurim);
+}
+function celsiusToFarenheit(tempC){
+    let tempF = (tempC * 9/5) + 32;
+    console.log(tempF);
+}
+function korrutustabel(num){
+    let mult;
+    for(let i = 1; i < 11; i++){
+        mult = num * i
+        console.log(num + " * " + i + " = " + mult);
+    }
+}
+function faktoriaal(num){
+    let factorial = 1;
+    for(let i = 1; i <= num; i++){
+        factorial *= i;
+    }
+    return(factorial);
+}
+function tähed(height){
+    for(let i = 1; i <= height; i++){
+        for(let j = 1; j <= i; j++){
+            ;//lisa arrayle tähti
+        }
+        console.log()//prindi array ja tühista array
+    }
+}
+function algarv(num){
+    let algarv = true
+    for(let i = 2; i < num; i++){
+        if(num % i === 0){
+            algarv = false
+        }
+    }
+    if(algarv === true){
+        console.log("Tegu on algarvuga.");
+    } else{
+        console.log("Tegu ei ole algarvuga.");
+    }
+}
