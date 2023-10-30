@@ -17,11 +17,13 @@ function harjutus4(nimi){
         console.log(nimi);
     }
 }
-function harjutus5(string){
-    let reverse = string.reverse();
+function harjutus5(nimi){
+    let reverse = nimi.split(``);
+    reverse = reverse.reverse()
+    reverse = reverse.join()
     console.log(reverse);
 }
-// idk kuidas teha
+// sain aru
 function harjutus6(){
     for(let i = 1; i < 101; i++){
         console.log(i);
