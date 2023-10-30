@@ -150,9 +150,10 @@ function faktoriaal(num){
     return(factorial);
 }
 function tähed(height){
+    let pikkus;
     for(let i = 1; i <= height; i++){
         for(let j = 1; j <= i; j++){
-            ;//lisa arrayle tähti
+            pikkus;//lisa arrayle tähti
         }
         console.log()//prindi array ja tühista array
     }
