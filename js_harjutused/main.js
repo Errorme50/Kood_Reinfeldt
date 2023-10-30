@@ -95,7 +95,7 @@ function harjutus14(inimesed) {
     let vanim = inimesed[0];
     let pikimAadress = inimesed[0];
     let lühimTelefon = inimesed[0];
-    let eestiEmail = null;
+    let eestiEmail;
 
     for (let inimene of inimesed) {
         if (inimene.vanus > vanim.vanus) {
