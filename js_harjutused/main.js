@@ -152,10 +152,7 @@ function faktoriaal(num){
 function tähed(height){
     let pikkus;
     for(let i = 1; i <= height; i++){
-        for(let j = 1; j <= i; j++){
-            pikkus;//lisa arrayle tähti
-        }
-        console.log()//prindi array ja tühista array
+        console.log('*'.repeat(i))
     }
 }
 function algarv(num){
@@ -171,3 +168,4 @@ function algarv(num){
         console.log("Tegu ei ole algarvuga.");
     }
 }
+tähed(5);
