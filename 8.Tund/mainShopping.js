@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("addItem").onclick = function(){
-        document.createElement("ul").textContent = document.getElementById("item").value;
-
+        document.createElement("shopping-list") = document.getElementById("item").value;
+        document.appendChild("shopping-list");
     }
 })
