@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Trail</title>
+    <style>
+        .trail {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #66cdaa;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    
+    <script>
+        document.addEventListener("mousemove", function(e) {
+        const trail = document.createElement("div");
+        trail.className = "trail";
+        trail.style.left = e.pageX + "px";
+        trail.style.top = e.pageY + "px";
+        document.body.appendChild(trail);
+
+        setTimeout(() => {
+        document.body.removeChild(trail);
+        }, 500);
+        });
+    </script>
+</body>
+</html>
