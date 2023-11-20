@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Vorm</title>
+   </head>
+   <body>
+    <form id="form">
+        <input type="username" id="username" placeholder="Kasutajanimi" required><br>
+        <input type="email" id="email" placeholder="Email" required><br>
+        <input type="password1" id="password1" placeholder="Parool"  required><br>
+        <input type="password2" id="password2" placeholder="Parooli kordus"  required><br>
+        <button type="submit" onclick="Validate()">Submit</button>
+    </form>
+    <script>
+        function Validate(){
+            const username = document.getElementById('username')
+            const minLengthUsername = 5;
+            if (username.length < minLengthUsername){
+            alert('Kasutajanimi peab olema pikem kui 5 märki');
+            } else {
+            console.log('Kasutajanimi sobib');
+            }
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!email.match(emailPattern)) {
+            alert('Pane sobiv email');
+            } else {
+            console.log('Sobiv email');
+            }
+            const newPassword = document.getElementById('password1').value;
+            const minLengthPassword = 8;
+            if (newPassword.length < minLengthPassword) {
+            alert('Parool peab olema pikem kui 8 märki');
+            } else {
+            console.log('Parool sobib');
+            }
+            const checkPassword = document.getElementById('password2').value;
+            if (checkPassword !== newPassword) {
+            alert('Parooli kordus peab olema sama, mis esialgne parool');
+            } else {
+            console.log('Parooli kordus sobib');
+            }
+            
+        }
+        
+    </script>
+   </body>
+</html>
