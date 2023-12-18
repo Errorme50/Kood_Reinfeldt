@@ -7,13 +7,25 @@
        <link rel="stylesheet" href="styles.css">
    </head>
    <body>
+        <header>
+            <h2>Login</h2>
+            <form id="login">
+                <input type="usernameLogin" id="usernameLogin" placeholder="Username"><br>
+                <input type="passwordLogin" id="passwordLogin" placeholder="Password"><br>
+                <button type="submitLogin" onclick="Login()">Login</button>
+            </form>
+        </header>
         <h1>Sign up</h1>
-        <form id="form">
-            <input type="username" id="username" placeholder="Kasutajanimi" required><br>
-            <input type="email" id="email" placeholder="Email" required><br>
-            <input type="password1" id="password1" placeholder="Parool"  required><br>
-            <input type="password2" id="password2" placeholder="Parooli kordus"  required><br>
-            <button type="submit" onclick="Validate()">Submit</button>
+        <form id="signUp">
+            <input type="usernameSignUp" id="usernameSignUp" placeholder="Username"><br>
+            <input type="passwordSignUp" id="passwordSignUp" placeholder="Password"><br>
+            <input type="name" id="name" placeholder="Name"><br>
+            <input type="surname" id="surname" placeholder="Surname"><br>
+            <input type="age" id="age" placeholder="Age"><br>
+            <input type="gender" id="gender" placeholder="Gender"><br> 
+            <!-- Add the multiple choise of gender -->
+            <button type="submitSignUp" onclick="SignUp()">Sign up</button>
         </form>
+        <script src="express.js"></script>
    </body>
 </html>
