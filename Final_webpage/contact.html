@@ -1,12 +1,36 @@
+ <!-- public/contact.html -->
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Contact</title>
-       <link rel="stylesheet" href="styles.css">
-   </head>
-   <body>
-    <script src="express.js"></script>
-   </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Contact Page</title>
+</head>
+<body>
+  <header>
+    <h1>Contact Us</h1>
+    <div id="user-info"></div>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h2>Contact Information</h2>
+    <p>You can leave your feedback below:</p>
+    <form id="feedback-form">
+      <textarea id="feedback" name="feedback" rows="4" placeholder="Type your feedback here"></textarea>
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </main>
+  <footer>
+    <p>&copy; 2024 Website</p>
+  </footer>
+  <script src="/express.js"></script>
+</body>
 </html>

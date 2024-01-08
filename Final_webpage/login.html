@@ -1,31 +1,43 @@
+<!-- public/login.html -->
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Sign up or login</title>
-       <link rel="stylesheet" href="styles.css">
-   </head>
-   <body>
-        <header>
-            <h2>Login</h2>
-            <form id="login">
-                <input type="usernameLogin" id="usernameLogin" placeholder="Username"><br>
-                <input type="passwordLogin" id="passwordLogin" placeholder="Password"><br>
-                <button type="submitLogin" onclick="Login()">Login</button>
-            </form>
-        </header>
-        <h1>Sign up</h1>
-        <form id="signUp">
-            <input type="usernameSignUp" id="usernameSignUp" placeholder="Username"><br>
-            <input type="passwordSignUp" id="passwordSignUp" placeholder="Password"><br>
-            <input type="name" id="name" placeholder="Name"><br>
-            <input type="surname" id="surname" placeholder="Surname"><br>
-            <input type="age" id="age" placeholder="Age"><br>
-            <input type="gender" id="gender" placeholder="Gender"><br> 
-            <!-- Add the multiple choise of gender -->
-            <button type="submitSignUp" onclick="SignUp()">Sign up</button>
-        </form>
-        <script src="express.js"></script>
-   </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Login Page</title>
+</head>
+<body>
+  <header>
+    <h1>Login or Signup</h1>
+  </header>
+  <main>
+    <div id="login-container">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    <div id="signup-container">
+      <h2>Signup</h2>
+      <form id="signup-form">
+        <label for="new-username">Username:</label>
+        <input type="text" id="new-username" name="new-username" required>
+        <label for="new-password">Password:</label>
+        <input type="password" id="new-password" name="new-password" required>
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+        <button type="submit">Signup</button>
+      </form>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2024 Website</p>
+  </footer>
+  <script src="/express.js"></script>
+</body>
 </html>
