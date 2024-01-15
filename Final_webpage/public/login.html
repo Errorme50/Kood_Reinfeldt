@@ -7,16 +7,19 @@
     <title>Login or signup</title>
 </head>
 <body>
-    <h1>Login Page</h1>
-    <!-- Login form content -->
-    <form id="loginForm" action="/login" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Login</button>
-    </form>
-    <h1>Registration Page</h1>
+    <header>
+        <h1>Login Page</h1>
+        <!-- Login form content -->
+        <form id="loginForm" action="/login" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </header>
+    
+    <h1>Registration</h1>
     <form>
         <label for="username">Username:</label>
         <input type="text" id="newUsername" name="username" required>
@@ -39,7 +42,8 @@
             <option value="female">Female</option>
         </select>
         <br>
-        <input type="submit" value="Registreeri">
+        <input type="submit" value="Register">
     </form>
+    <script src="express.js"></script>
 </body>
 </html>

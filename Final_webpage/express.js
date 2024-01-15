@@ -1,54 +1,38 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const users = [
-	users.username = admin
-	,users.password = admin
-];
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(express.static(path.join(__dirname, 'public')));
 
-passport.use(new LocalStrategy((username, password, done) => {
-  const user = users.find(u => u.username === username && u.password === password);
-  if (user) return done(null, user);
-  return done(null, false, { message: 'Incorrect username or password.' });
-}));
+// Sample users array
+const users = [];
+const feedbacks = [];
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-  const user = users.find(u => u.id === id);
-  done(null, user);
-});
-
-app.use(express.static('public'));
-
-// Routes
-app.get('/', (req, res) => {
-  if (req.isAuthenticated()) {
-    res.sendFile(path.join(__dirname, '/public/index.html'));
+// Middleware to check if the user is authenticated
+const isAuthenticated = (req, res, next) => {
+  if (req.session.user) {
+    next();
   } else {
     res.redirect('/login');
   }
+};
+
+// Routes
+app.get('/', isAuthenticated, (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
-app.get('/about', (req, res) => {
+app.get('/about', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '/public/about.html'));
 });
 
-app.get('/contact', (req, res) => {
+app.get('/contact', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '/public/contact.html'));
 });
 
@@ -56,27 +40,43 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/login.html'));
 });
 
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' })
-);
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  const user = users.find(u => u.username === username && u.password === password);
 
-app.get('/register', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/register.html'));
-});
-
-app.post('/register', (req, res) => {
-  const { username, password, firstName, lastName, age, gender } = req.body;
-  const user = { id: users.length + 1, username, password, firstName, lastName, age, gender };
-  users.push(user);
-  res.redirect('/login');
-});
-
-app.get('/profile', (req, res) => {
-  if (req.isAuthenticated()) {
-    res.sendFile(path.join(__dirname, '/public/profile.html'));
+  if (user) {
+    req.session.user = username;
+    res.redirect('/');
   } else {
     res.redirect('/login');
   }
+});
+
+app.post('/login', (req, res) => {
+  const { username, password, firstName, lastName, age, gender } = req.body;
+  const existingUser = users.find(u => u.username === username);
+
+  if (existingUser) {
+    res.redirect('/login');
+  } else {
+    const newUser = { username, password, firstName, lastName, age, gender };
+    users.push(newUser);
+    req.session.user = username;
+    res.redirect('/');
+  }
+});
+
+app.get('/profile', isAuthenticated, (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/profile.html'));
+});
+
+app.post('/profile', isAuthenticated, (req, res) => {
+  const { feedback } = req.body;
+  const username = req.session.user;
+
+  // Store feedback in an array 
+  feedbacks.push({ username, feedback });
+  res.redirect('/profile');
 });
 
 app.listen(PORT, () => {
