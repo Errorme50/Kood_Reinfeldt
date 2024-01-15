@@ -16,7 +16,6 @@ const feedbacks = [];
 
 // Middleware to check if the user is authenticated
 
-
 // Routes
 app.get('/', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));

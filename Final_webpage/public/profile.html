@@ -17,6 +17,47 @@
         <textarea id="feedback" name="feedback" rows="4" required></textarea>
         <button type="submit">Submit Feedback</button>
     </form>
-    <script src="/Kood_Reinfeldt/Final_webpage/express.js"></script>
+    <script src="/Kood_Reinfeldt/Final_webpage/express.js">
+    const users = [  
+            {
+    username: "admin",
+    password: "admin",
+    age: '17',
+    gender:  'Male',
+    name: 'Arthur',
+    surname: 'Reinfeldt',
+  }
+];
+    // Check if the user is logged in
+    const loggedInUser = sessionStorage.getItem("user");
+
+    // Function to fill the profile div with user info
+    function fillProfileInfo() {
+        // Get the profileInfo div
+        const profileInfoDiv = document.getElementById("profileInfo");
+
+        if (loggedInUser) {
+            // Parse the JSON string to get user details
+            const user = JSON.parse(loggedInUser);
+
+            // Create HTML content with user information
+            const profileContent = `
+                <h2>${user.firstName} ${user.lastName}</h2>
+                <p>Username: ${user.username}</p>
+                <p>Age: ${user.age}</p>
+                <p>Gender: ${user.gender}</p>
+            `;
+
+            // Set the HTML content of the profileInfo div
+            profileInfoDiv.innerHTML = profileContent;
+        } else {
+            // If user is not logged in, display a message
+            profileInfoDiv.innerHTML = "<p>Please log in to view your profile.</p>";
+        }
+    }
+
+    // Call the function when the page loads
+    window.onload = fillProfileInfo;
+    </script>
 </body>
 </html>
