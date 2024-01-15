@@ -39,7 +39,7 @@ app.get('/contact', isAuthenticated, (req, res) => {
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/login.html'));
 });
-
+function Login(){
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
   const user = users.find(u => u.username === username && u.password === password);
@@ -51,19 +51,14 @@ app.post('/login', (req, res) => {
     res.redirect('/login');
   }
 });
-
+}
 app.post('/login', (req, res) => {
   const { username, password, firstName, lastName, age, gender } = req.body;
   const existingUser = users.find(u => u.username === username);
-
-  if (existingUser) {
-    res.redirect('/login');
-  } else {
     const newUser = { username, password, firstName, lastName, age, gender };
     users.push(newUser);
     req.session.user = username;
     res.redirect('/');
-  }
 });
 
 app.get('/profile', isAuthenticated, (req, res) => {
