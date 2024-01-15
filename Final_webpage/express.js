@@ -11,9 +11,7 @@ app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: tr
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Sample users array
-const users = [
 
-];
 const feedbacks = [];
 
 // Middleware to check if the user is authenticated
