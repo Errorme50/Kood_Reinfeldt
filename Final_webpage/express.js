@@ -77,3 +77,17 @@ app.post('/profile', isAuthenticated, (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+// Random cat api
+newCatButton.addEventListener('click', getCatImage);
+
+function getCatImage() {
+
+    fetch('https://api.thecatapi.com/v1/images/search')
+    .then(response => response.json())
+    .then(data => {
+    document.getElementById('catImage').src = data[0].url;
+    })
+
+.catch(error => console.error('Error fetching cat image:', error));
+}
+getCatImage()
