@@ -11,17 +11,13 @@ app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: tr
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Sample users array
-const users = [];
+const users = [
+
+];
 const feedbacks = [];
 
 // Middleware to check if the user is authenticated
-const isAuthenticated = (req, res, next) => {
-  if (req.session.user) {
-    next();
-  } else {
-    res.redirect('/login');
-  }
-};
+
 
 // Routes
 app.get('/', isAuthenticated, (req, res) => {
@@ -38,27 +34,6 @@ app.get('/contact', isAuthenticated, (req, res) => {
 
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/login.html'));
-});
-function Login(){
-app.post('/login', (req, res) => {
-  const { username, password } = req.body;
-  const user = users.find(u => u.username === username && u.password === password);
-
-  if (user) {
-    req.session.user = username;
-    res.redirect('/');
-  } else {
-    res.redirect('/login');
-  }
-});
-}
-app.post('/login', (req, res) => {
-  const { username, password, firstName, lastName, age, gender } = req.body;
-  const existingUser = users.find(u => u.username === username);
-    const newUser = { username, password, firstName, lastName, age, gender };
-    users.push(newUser);
-    req.session.user = username;
-    res.redirect('/');
 });
 
 app.get('/profile', isAuthenticated, (req, res) => {
@@ -77,17 +52,3 @@ app.post('/profile', isAuthenticated, (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
-// Random cat api
-newCatButton.addEventListener('click', getCatImage);
-
-function getCatImage() {
-
-    fetch('https://api.thecatapi.com/v1/images/search')
-    .then(response => response.json())
-    .then(data => {
-    document.getElementById('catImage').src = data[0].url;
-    })
-
-.catch(error => console.error('Error fetching cat image:', error));
-}
-getCatImage()

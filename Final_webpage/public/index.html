@@ -33,5 +33,20 @@
     <div id="catImageContainer"></div>
 
 </body>
-<script src="/Kood_Reinfeldt/Final_webpage/express.js"></script>
+<script>
+    // Random cat api
+newCatButton.addEventListener('click', getCatImage);
+
+function getCatImage() {
+
+    fetch('https://api.thecatapi.com/v1/images/search')
+    .then(response => response.json())
+    .then(data => {
+    document.getElementById('catImage').src = data[0].url;
+    })
+
+.catch(error => console.error('Error fetching cat image:', error));
+}
+getCatImage()
+</script>
 </html>
