@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>User Profile Page</title>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-left">
+                <h1>Profiil</h1>
+            </div>
+            <div class="header-right">
+                <nav>
+                    <a href="/">Home</div>
+                    <a href="/about">About</a>
+                    <a href="/contact">Contact</a>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+<main>
+    <div id="profileInfo">
+        <p>Username: <%= user.username %></p>
+        <p>First Name: <%= user.firstName %></p>
+        <p>Last Name: <%= user.lastName %></p>
+        <p>Age: <%= user.age %></p>
+        <p>Gender: <%= user.gender %></p>
+        <button onclick="openFeedbackModal()">Anna Tagasisidet</button>
+    </div>
+
+    <div class="feedback-list" id="feedbackList">
+        <h2>Tagasiside:</h2>
+    </div>
+</main>
+
+<div id="overlay"></div>
+<div id="feedbackModal">
+    <span id="closeModal" onclick="closeFeedbackModal()">X</span>
+    <h2>Tagasiside</h2>
+    <textarea id="feedbackText" placeholder="Sisesta siia oma tagasiside..."></textarea>
+    <button id="submitBtn" onclick="submitFeedback()">Saada</button>
+</div>
+
+<script>
+    function saveFeedbackToLocalStorage(feedbackText) {
+        if (typeof(Storage) !== "undefined") {
+            let existingFeedback = JSON.parse(localStorage.getItem('feedback')) || [];
+            existingFeedback.push(feedbackText);
+            localStorage.setItem('feedback', JSON.stringify(existingFeedback));
+        } else {
+            console.error('Local storage ei ole toetatud.');
+        }
+    }
+
+    function showFeedback() {
+        const feedbackList = document.getElementById('feedbackList');
+        feedbackList.innerHTML = '';
+
+        if (typeof(Storage) !== "undefined") {
+            let existingFeedback = JSON.parse(localStorage.getItem('feedback')) || [];
+
+            if (existingFeedback.length > 0) {
+                const feedbackHeader = document.createElement('h2');
+                feedbackHeader.textContent = 'Tagasiside:';
+                feedbackList.appendChild(feedbackHeader);
+
+                existingFeedback.forEach((feedback, index) => {
+                    const feedbackItem = document.createElement('div');
+                    feedbackItem.classList.add('feedback-item');
+                    feedbackItem.textContent = `${index + 1}. ${feedback}`;
+                    feedbackList.appendChild(feedbackItem);
+                });
+            }
+        } else {
+            console.error('Local storage ei ole toetatud.');
+        }
+    }
+
+    function openFeedbackModal() {
+        document.getElementById('feedbackModal').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+        showFeedback();
+    }
+
+    function closeFeedbackModal() {
+        document.getElementById('feedbackModal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    function submitFeedback() {
+        const feedbackText = document.getElementById('feedbackText').value;
+
+        saveFeedbackToLocalStorage(feedbackText);
+
+        closeFeedbackModal();
+        showFeedback();
+    }
+
+    window.onload = showFeedback;
+</script>
+
+</body>

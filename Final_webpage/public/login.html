@@ -9,120 +9,42 @@
 <body>
     <header>
         <h1 style="text-align:center">Login Page</h1>
-        <form id="loginForm" action="/login" method="POST" onsubmit="return login()">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+        <form action="/login" method="post">
+            <label for="loginUsername">Username:</label>
+            <input type="text" id="loginUsername" name="username" required><br>
+    
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" name="password" required><br>
+    
             <button type="submit">Login</button>
         </form>
     </header>
     <div>
         <h1>Registration</h1>
-        <form onsubmit="return register()">
-            <label for="newUsername">Username:</label>
-            <input type="text" id="newUsername" name="username" required>
-            <br>
-            <label for="newPassword">Password:</label>
-            <input type="password" id="newPassword" name="password" required>
-            <br>
-            <label for="firstName">Name:</label>
-            <input type="text" id="firstName" name="firstName" required>
-            <br>
-            <label for="lastName">Surname:</label>
-            <input type="text" id="lastName" name="lastName" required>
-            <br>
+        <form action="/register" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
+    
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+    
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required><br>
+    
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required><br>
+    
             <label for="age">Age:</label>
-            <input type="text" id="age" name="age" required>
-            <br>
+            <input type="number" id="age" name="age" required min="1"><br>
+    
             <label for="gender">Gender:</label>
             <select id="gender" name="gender" required>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
-            </select>
-            <br>
-            <input type="submit" value="Register">
+            </select><br>
+    
+            <button type="submit">Register</button>
         </form>
     </div>
-    <script>
-        const users = [  
-            {
-    username: "admin",
-    password: "admin",
-    age: '17',
-    gender:  'Male',
-    name: 'Arthur',
-    surname: 'Reinfeldt',
-  }
-];
-
-        function login() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-
-            const user = users.find(user => user.username === username && user.password === password);
-
-            if (user) {
-                console.log("Login successful!");
-                console.log("User details:", user);
-
-                // Store user details in sessionStorage
-                sessionStorage.setItem("user", JSON.stringify(user));
-
-                // Redirect to home page
-                window.location.href = "/";
-                return false; // Prevent form submission
-            } else {
-                console.log("Login failed. Invalid username or password.");
-                return false; // Prevent form submission
-            }
-        }
-
-        function register() {
-        const newUsername = document.getElementById("newUsername").value;
-        const newPassword = document.getElementById("newPassword").value;
-        const firstName = document.getElementById("firstName").value;
-        const lastName = document.getElementById("lastName").value;
-        const age = document.getElementById("age").value;
-        const gender = document.getElementById("gender").value;
-
-        // Check if the username is already taken
-        if (users.some(user => user.username === newUsername)) {
-            console.log("Registration failed. Username already taken.");
-            return false; // Prevent form submission
-        }
-
-        // Create a new user object
-        const newUser = {
-            username: newUsername,
-            password: newPassword,
-            firstName: firstName,
-            lastName: lastName,
-            age: age,
-            gender: gender
-        };
-
-        // Add the new user to the users array
-        users.push(newUser);
-
-        console.log("Registration successful!");
-        console.log("New user details:", newUser);
-        console.log("Updated users array:", users);
-
-        // Store user details in sessionStorage
-        sessionStorage.setItem("user", JSON.stringify(newUser));
-
-        // Redirect to home page
-        window.location.href = "/";
-        return false; // Prevent form submission
-    }
-    const isAuthenticated = (req, res, next) => {
-  if (login() = true) {
-    next();
-  } else {
-    res.redirect('/login');
-  }
-};
-    </script>
 </body>
 </html>
