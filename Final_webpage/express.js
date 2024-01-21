@@ -1,17 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const session = require('express-session');
-const path = require('path');
-app.set('view engine', 'ejs');
-const app = express();
-const PORT = process.env.PORT || 3000;
 
+const session = require('express-session');
+
+const path = require('path');
+const app = express();
+const PORT = 3002;
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'public', 'views'));
+
+
+
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: true }));
-app.use(express.static('public'));
-
-
 const users = {};
 
 const requireAuth = (req, res, next) => {
@@ -37,9 +40,10 @@ app.get('/about', requireAuth, (req, res) => {
     res.sendFile(__dirname + '/public/about.html');
 });
 
-app.get('/profile', requireAuth, (req, res) => {
-    res.sendFile(__dirname + '/views/profile.ejs');
+app.get('/profile', (req, res) => {
+    res.render('profile', { req });
 });
+
 
 app.get('/contact', requireAuth, (req, res) => {
     res.sendFile(__dirname + '/public/contact.html');
@@ -69,9 +73,9 @@ app.post('/register', (req, res) => {
     };
 
     console.log('User registered:', users[username]);
-
     res.redirect('/login');
 });
+
 
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
@@ -95,6 +99,20 @@ app.post('/login', (req, res) => {
 
     // Redirect to the profile page
     res.redirect('/');
+});
+
+app.get('/profile', requireAuth, (req, res) => {
+    const username = req.query.username || req.session.user;
+
+    // Check if the user exists
+    const user = users[username];
+    if (!user) {
+        console.log('User not found.');
+        return res.status(404).send('User not found.');
+    }
+
+    // Render the profile.ejs template with user data
+    res.render('profile', { user });
 });
 
 

@@ -16,6 +16,17 @@
     text-align: center;
   }
 
+  h2 {
+    text-align: center;
+  }
+  img{
+    text-align: center;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+
+  }
+
   p {
     text-align: center;
     width: 50%;
