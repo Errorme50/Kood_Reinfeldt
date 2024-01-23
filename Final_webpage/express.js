@@ -40,9 +40,6 @@ app.get('/about', requireAuth, (req, res) => {
     res.sendFile(__dirname + '/public/about.html');
 });
 
-app.get('/profile', (req, res) => {
-    res.render('profile', { req });
-});
 
 
 app.get('/contact', requireAuth, (req, res) => {
